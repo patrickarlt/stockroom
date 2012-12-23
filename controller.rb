@@ -89,7 +89,6 @@ class Application < Sinatra::Base
     @gross_sales = gross_sales
     
     # Estimated Profit
-    binding.pry
     profit_per_day_so_far = (net_sales.zero?) ? 0 : Date.today.day / net_sales
     @estimated_profit = (profit_per_day_so_far * days_left_this_month) + net_sales - @store.rent
     
