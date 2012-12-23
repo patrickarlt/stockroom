@@ -1,6 +1,16 @@
 class Application < Sinatra::Base
   helpers do
 
+    def class_for_number num
+      if num < 0
+        "red"
+      elsif num > 0
+        "green"
+      else
+        ""
+      end
+    end
+
     def checked_if(boolean)
       boolean == true ? 'checked' : ''
     end
@@ -9,9 +19,13 @@ class Application < Sinatra::Base
       boolean == true ? 'selected' : ''
     end
 
+    def todays_date
+      Time.now.strftime("%Y-%m-%d") 
+    end
+
     def title(*value)
-      if @_title.blank?
-        @_title = "#{value.first} - #{Application.Config.title}" 
+      if !value.empty?
+        @_title = value.first 
       elsif !@_full_title.blank?
         "<title>#{@_full_title}</title>"
       else

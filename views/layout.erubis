@@ -13,7 +13,35 @@
   </head>
 
   <body class="<%= browser.body_class %> <%= path_class %>">
-    <%= yield %>
+    
+    <header id="header">
+      <div class="row">
+        <h3 class="text-logo">Atomic Hideaway</h3>
+        <nav class="horizontal">
+          <ul>
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/history">History</a></li>
+          </ul>
+          <a href="/items/new" class="btn primary right">Add Item</a>
+        </nav>
+        
+      </div>
+    </header>
+
+    <div id="wrapper">
+      <div id="page" class="container">
+        <div class="row">
+          <% flash.each do |key, value| %>
+            <div class="alert column twentyfour <%= key %>"><p><%= value %></p></div>
+          <% end %>
+        </div>
+        <%= yield %>
+      </div>
+      <div id="push"></div>
+    </div>
+    <footer id="footer">
+      Footer
+    </footer>
   </body>
 
   <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->

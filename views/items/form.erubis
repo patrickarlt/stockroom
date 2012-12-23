@@ -1,0 +1,89 @@
+<form class="stacked" method="POST" action="/items/new">
+
+  <div class="fields">
+    <div class="field twenty">
+      <label for"">Name</label>
+      <div class="input">
+        <input type="text" name="name" value="<%= (@item) ? @item.name : "" %>"> 
+        <small>One line description of item</small>
+      </div>
+    </div>
+    <div class="field four">
+      <label for"">ID</label>
+      <div class="input columns twenty">
+        <input type="text" name="item_id" value="<%= (@item) ? @item.item_id : "" %>"> 
+        <small>Unique Item ID</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="field">
+    <label for"">Description</label>
+    <div class="input">
+      <textarea name="description" value="<%= (@item) ? @item.description : "" %>"></textarea>
+      <small>Any other details about this item</small>
+    </div>
+  </div>
+
+  <div class="column twelve">
+    <fieldset>
+      <legend>Purchase Info</legend>
+      <div class="field eight">
+        <label for"">Purchased On</label>
+        <div class="input">
+          <input type="date" name="bought_on" value="<%= (@item) ? @item.bought_on : todays_date %>"> 
+          <small>When was the item purchased?</small>
+        </div>
+      </div>
+      <div class="field eight">
+        <label for"">Purchased At</label>
+        <div class="input ">
+          <input type="text" name="bought_at" value="<%= (@item) ? @item.bought_at : "" %>">
+          <small>Where was the item purchased?</small>
+        </div>
+      </div>
+      <div class="field eight">
+        <label for"">Purchased For</label>
+        <div class="input ">
+          <input type="number" name="bought_for" value="<%= (@item) ? @item.bought_for : "0" %>"> 
+          <small>What was the item purchased for?</small>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+
+  <div class="column twelve">
+    <fieldset>
+      <legend>Pricing Info</legend>
+      <div class="field eight">
+        <label for"">Priced For</label>
+        <div class="input ">
+          <input type="number" name="priced_for" value="<%= (@item) ? @item.bought_for : "0" %>"> 
+          <small>How much will you price the item for?</small>
+        </div>
+      </div>
+      <div class="field eight">
+        <label for"">In Store On</label>
+        <div class="input ">
+          <input type="date" name="in_store" value="<%= (@item) ? @item.bought_on : todays_date %>">
+          <small>When did you put the item in your store?</small>
+        </div>
+      </div>
+      <div class="field eight">
+        <label for"">Category</label>
+        <div class="input ">
+          <select name="category">
+            <% Item::Categories.each do |category| %>
+              <option value="<%= category %>" <% if @item %><%= selected_if(@item.category == category) %><% end %>><%= category.capitalize %></option>
+            <% end %>
+          </select>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+
+  <div class="actions">  
+    <input type="submit" value="<%= (@item) ? "Update Item" : "Create Item" %>" class="btn">
+  </div>
+
+</form>

@@ -109,11 +109,6 @@ class Application < Sinatra::Base
     compass.output_style = ENV['RACK_ENV'] == 'production' ? :compressed : :expanded
   end
 
-  # Params Shortcut
-  def p
-    Hashie::Mash.new params
-  end
-
 end
 
 # Require Controllers

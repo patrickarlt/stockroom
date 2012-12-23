@@ -1,0 +1,75 @@
+<div class="ten column center">
+  <form action="/signup" method="POST">
+    
+    <h3 class="trailer-half leader">Account Info</h2>
+
+    <div class="fields">
+      <div class="field twelve">
+        <label for="first_name">First Name</label>
+        <div class="input">
+          <input type="text" id="first_name" name="first_name">
+        </div>
+      </div>
+
+      <div class="field twelve">
+        <label for="last_name">Last Name</label>
+        <div class="input">
+          <input type="text" id="last_name" name="last_name">
+        </div>
+      </div>
+    </div>
+
+    <div class="fields">
+      <div class="field twelve">
+        <label for="email">Email</label>
+        <div class="input">
+          <input type="email" id="email" name="email">
+        </div>
+      </div>
+
+      <div class="field twelve">
+        <label for="password">Password</label>
+        <div class="input">
+          <input type="password" id="password" name="password">
+        </div>
+      </div>
+    </div>
+
+    <h3 class="trailer-half">Store Info</h2>
+
+    <div class="field">
+      <label for="store_name">Name</label>
+      <div class="input">
+        <input type="text" id="store_name" name="store[name]">
+      </div>
+    </div>
+
+    <div class="fields">
+      <div class="field eight">
+        <label for="rent">Rent</label>
+        <div class="input">
+          <input type="number" id="rent" name="store[rent]">
+        </div>
+      </div>
+
+      <div class="field eight">
+        <label for="commission">Commission</label>
+        <div class="input">
+          <input type="number" id="commission" name="store[commission]">
+        </div>
+      </div>
+
+      <div class="field eight">
+        <label for="credit_card">Credit Card Fee</label>
+        <div class="input">
+          <input type="number" id="credit_card" name="store[credit_card_fee]">
+        </div>
+      </div>
+    </div>  
+
+    <div class="action">
+      <input type="submit" value="Signup" class="btn primary large fill">
+    </div>
+
+  </form>
+</div>

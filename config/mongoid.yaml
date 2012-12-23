@@ -1,7 +1,7 @@
 development:
   sessions:
     default:
-      database: mongoid
+      database: stockroom
       hosts:
         - localhost:27017
 production:

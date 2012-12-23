@@ -1,12 +1,109 @@
+// import compass
 @import "compass";
+
+// import formula config variables
 @import "formula/config";
+
+// inline config
+$container-max:     1080px;
+$button-weight:     700;
+
+// import formula
 @import "formula";
 
+// symbol set social icons
 @include font-face("SSSocial", font-files("ss-social-regular.woff", "ss-social-regular.ttf", "ss-social-regular.svg#SSSocialRegular"), "ss-social-regular.eot");
 @include font-face("SSSocial", font-files("ss-social-circle.woff", "ss-social-circle.ttf", "ss-social-circle.svg#SSSocialCircle"), "ss-social-circle.eot", 700);
-
 @import "ss-social.css";
 
+// symbol set
 @include font-face("SSStandard", font-files("ss-standard.woff", "ss-standard.ttf", "ss-standard.svg#SSStandard"), "ss-standard.eot");
-
 @import "ss-standard.css";
+
+.btn.ss-icon {
+  @include apply-side-rhythm-border("top", 1px, .25, 15px, solid);
+  @include apply-side-rhythm-border("bottom", 1px, .05, 15px, solid);
+  padding-left: 0;
+  padding-right: 0;
+  text-align: center;
+  border-width: 1px;
+  width: 28px;
+}
+
+.item-descrition {
+  @include column-width(14);
+}
+.item-actions {
+  @include column-width(2);
+}
+.item-sell {
+  @include column-width(6); 
+}
+.item-profit {
+  @include column-width(1);
+}
+.item-markup {
+  @include column-width(1); 
+}
+
+.btn.fill {
+  display: block;
+  width: 100%;
+}
+
+th.centered {
+  text-align: center;
+}
+
+table {
+  border: 1px solid $lighter-gray;
+}
+
+.dashboard-item {
+  @extend .panel;
+  text-align: center;
+  h2 {
+
+  }
+  h6 {
+    color: $lighter-gray;
+    text-transform: uppercase;
+  }
+  small {
+    color: $lighter-gray;
+  }
+}
+
+.red {
+  color: $dark-red;
+}
+
+.green {
+  color: $dark-green
+}
+
+#page {
+  margin-top: 3em;
+}
+
+#header {
+  .btn {
+    margin-top: .4em;
+    margin-right: 6px;
+  }
+  .text-logo {
+    margin-left: 6px;
+  }
+}
+
+table {
+  p {
+    margin-bottom: 0;
+  }
+  form {
+    @include clearfix();
+    .field {
+      margin-bottom: 0;
+    }
+  }
+}
