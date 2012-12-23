@@ -23,5 +23,13 @@ class Application < Sinatra::Base
       (current_user.nil? && session[:session_id].nil?) ? true : false
     end
 
+    def days_this_month
+      Time.days_in_month(Date.today.month, Date.today.year)
+    end
+
+    def days_left_this_month
+      days_this_month - Date.today.day
+    end
+
   end
 end

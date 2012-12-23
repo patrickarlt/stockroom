@@ -1,0 +1,55 @@
+<div class="row clear">
+  <div class="eight column">
+    <div class="dashboard-item">
+      <h6>Total Profit</h6>
+      <h2 class="<%= class_for_number @profit_this_month %>"><%= "%g" % @profit_this_month %></h2>
+      <small>Profit on every sale minus rent</small>
+    </div>
+  </div>
+
+  <div class="eight column">
+    <div class="dashboard-item">
+      <h6>Gross Sales</h6>
+      <h2 class="<%= class_for_number @gross_sales %>"><%= "%g" % @gross_sales %></h2>
+      <small>Sales before fees and commission</small>
+    </div>
+  </div>
+
+  <div class="eight column">
+    <div class="dashboard-item">
+      <h6>Items Sold</h6>
+      <h2 class="<%= class_for_number @items_sold %>"><%= "%g" % @items_sold %></h2>
+      <small>Total number of items sold</small>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="column twentyfour">
+    <h2 class="leader">Sold This Month</h2>
+    <table class="striped bordered">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th class="centered">Gross</th>
+          <th class="centered">Fees</th>
+          <th class="centered">Net</th>
+          <th class="centered">Markup</th>
+          <th class="centered">Markdown</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @sold_this_month.each do |item| %>
+          <tr>
+            <td><%= item.name %></td>
+            <td>$<%= "%g" % item.gross_profit.round(2) %></td>
+            <td>$<%= "%g" % item.fees.round(2) %></td>
+            <td>$<%= "%g" % item.net_profit.round(2) %></td>
+            <td><%= "%g" % item.markup %>x</td>
+            <td><%= "%g" % item.markdown %>%</td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

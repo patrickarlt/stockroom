@@ -6,7 +6,11 @@ class Application < Sinatra::Base
   end
 
   get '/' do
-    redirect '/'
+    if logged_in?
+      redirect '/dashboard'
+    else
+      redirect '/login'
+    end
   end
 
   get '/login' do
@@ -69,7 +73,7 @@ class Application < Sinatra::Base
 
   get '/dashboard' do
     require_session
-    title "This Month"
+    title "Dashboard"
 
     @store = current_user.stores[0]
     net_sales = @store.net_sales_this_month
@@ -85,13 +89,52 @@ class Application < Sinatra::Base
     @gross_sales = gross_sales
     
     # Estimated Profit
-    days_in_month = Time.days_in_month(Date.today.month, Date.today.year)
-    days_passed_this_month = Date.today.day
-    days_left_in_month = days_in_month - Date.today.day
-    profit_per_day_so_far = days_passed_this_month / net_sales
-    @estimated_profit = (profit_per_day_so_far * days_left_in_month) + net_sales - @store.rent
+    profit_per_day_so_far = Date.today.day / net_sales
+    @estimated_profit = (profit_per_day_so_far * days_left_this_month) + net_sales - @store.rent
     
     erb :index
+  end
+
+  get "/history" do
+    require_session
+    title "Sales History"
+    @store = current_user.stores[0]
+    months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].reverse!
+    @history = []
+    [2013, 2012].each do |year|
+      summary = {
+        year: year,
+        months: []
+      }
+      months.each do |month|
+        summary[:months].push({
+          month: Date::MONTHNAMES[month],
+          num: month,
+          profit: @store.profit_for_month(year, month),
+          total_sales: @store.total_sales_for_month(year, month),
+          num_sales: @store.num_sales_for_month(year, month)
+        })
+      end
+      @history.push(summary)
+    end
+    erb :"history/index"
+  end
+
+  get "/history/:year/:month" do
+    require_session
+    title "Sales History"
+
+    @store = current_user.stores[0]
+    net_sales = @store.net_sales_for_month(params[:year].to_i, params[:month].to_i)
+    gross_sales = @store.total_sales_for_month(params[:year].to_i, params[:month].to_i)
+
+    @sold_this_month = @store.items.sold_in_month(params[:year].to_i, params[:month].to_i)
+    
+    # Metrics
+    @profit_this_month = net_sales.round(2) - @store.rent
+    @items_sold = @store.num_sales_this_month
+    @gross_sales = gross_sales
+    erb :"history/view"
   end
 
 end

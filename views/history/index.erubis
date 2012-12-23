@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="column twelve center">
+    <% @history.each do |summary| %>
+      <h2><%= summary[:year] %></h2>
+      <table>
+        <tbody>
+          <% summary[:months].each do |month| %>
+            <% if month[:num_sales] > 0 %>
+              <tr>
+                <td><a href="/history/<%= summary[:year] %>/<%= month[:num] %>"><%= month[:month] %></a></td>
+                <td><%= month[:num_sales]%></td>
+                <td><%= month[:total_sales]%></td>
+                <td><%= month[:profit]%></td>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+  </div>
+</div>
