@@ -11,13 +11,14 @@ class Items < Application
     
     item = current_user.stores[0].items.new({
       name: params[:name],
-      description: params[:description],
-      category: params[:category],
       item_id: params[:item_id],
-      bought_at: params[:bought_at],
+      description: params[:description],
       bought_on: params[:bought_on],
+      bought_at: params[:bought_at],
       bought_for: params[:bought_for].gsub("$", "").to_f,
       priced_for: params[:priced_for].gsub("$", "").to_f,
+      in_store: params[:in_store],
+      category: params[:category]
     })
 
     if item.valid?

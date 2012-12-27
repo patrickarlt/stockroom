@@ -58,14 +58,14 @@
       <div class="field eight">
         <label for"">Priced For</label>
         <div class="input ">
-          <input type="text" name="priced_for" value="<%= (@item) ? @item.bought_for : "0" %>"> 
+          <input type="text" name="priced_for" value="<%= (@item) ? @item.priced_for : "0" %>"> 
           <small>How much will you price the item for?</small>
         </div>
       </div>
       <div class="field eight">
         <label for"">In Store On</label>
         <div class="input ">
-          <input type="date" name="in_store" value="<%= (@item) ? @item.bought_on : todays_date %>">
+          <input type="date" name="in_store" value="<%= (@item) ? @item.in_store : todays_date %>">
           <small>When did you put the item in your store?</small>
         </div>
       </div>
