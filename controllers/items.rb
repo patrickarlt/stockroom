@@ -8,8 +8,17 @@ class Items < Application
 
   post "/new" do
     require_session
-    item = current_user.stores[0].items.new params
-    #redirect "/session/new" + (params[:page] ? "?page=#{Rack::Utils.escape params[:page]}" : "")
+    
+    item = current_user.stores[0].items.new({
+      name: params[:name],
+      description: params[:description],
+      category: params[:category],
+      item_id: params[:item_id],
+      bought_at: params[:bought_at],
+      bought_on: params[:bought_on],
+      bought_for: params[:bought_for].gsub("$", "").to_f,
+      priced_for: params[:priced_for].gsub("$", "").to_f,
+    })
 
     if item.valid?
       item.save()
@@ -43,7 +52,7 @@ class Items < Application
     item = Item.find(params[:id])
     begin
       item.update_attributes({
-        sold_for: params[:sold_for],
+        sold_for: params[:sold_for].gsub("$", "").to_f,
         sold_on: params[:sold_on],
         sold: true
       })

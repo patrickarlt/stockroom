@@ -39,10 +39,6 @@ class Item
   scope :sold_after, ->(date) {where(:created_at.gte => date)}
   
   scope :sold_in_month, ->(year, month) {
-    puts ''
-    puts year.inspect
-    puts month.inspect
-    puts ''
     time = Date.new(year, month)
     where(sold: true, :sold_on.gte => time.beginning_of_month, :sold_on.lte => time.end_of_month)
   }

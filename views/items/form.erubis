@@ -45,7 +45,7 @@
       <div class="field eight">
         <label for"">Purchased For</label>
         <div class="input ">
-          <input type="number" name="bought_for" value="<%= (@item) ? @item.bought_for : "0" %>"> 
+          <input type="text" name="bought_for" value="<%= (@item) ? @item.bought_for : "0" %>"> 
           <small>What was the item purchased for?</small>
         </div>
       </div>
@@ -58,7 +58,7 @@
       <div class="field eight">
         <label for"">Priced For</label>
         <div class="input ">
-          <input type="number" name="priced_for" value="<%= (@item) ? @item.bought_for : "0" %>"> 
+          <input type="text" name="priced_for" value="<%= (@item) ? @item.bought_for : "0" %>"> 
           <small>How much will you price the item for?</small>
         </div>
       </div>

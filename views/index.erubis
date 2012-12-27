@@ -65,7 +65,7 @@
               <div class="field column seven">
                 <label for="sold_for" class="visuallyhidden">Sold For</label>
                 <div class="input">
-                  <input name="sold_for" type="number" value="<%= item.priced_for %>">
+                  <input name="sold_for" type="text" value="<%= item.priced_for %>">
                 </div>
               </div>
 

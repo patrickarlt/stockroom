@@ -76,7 +76,7 @@ class Application < Sinatra::Base
     title "Dashboard"
 
     @store = current_user.stores[0]
-    net_sales = @store.net_sales_this_month
+    net_sales = @store.net_sales_this_month || 0
     gross_sales = @store.total_sales_this_month || 0
 
     # Item List
