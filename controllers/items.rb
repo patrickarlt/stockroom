@@ -71,4 +71,27 @@ class Items < Application
     erb :"items/form"
   end
 
+  post "/edit/:id" do
+    require_session
+    title "Edit Item"
+    item = Item.find(params[:id])
+    begin
+      item.update_attributes!({
+        name: params[:name],
+        item_id: params[:item_id],
+        description: params[:description],
+        bought_on: params[:bought_on],
+        bought_at: params[:bought_at],
+        bought_for: params[:bought_for].gsub("$", "").to_f,
+        priced_for: params[:priced_for].gsub("$", "").to_f,
+        in_store: params[:in_store],
+        category: params[:category]
+      })
+      flash[:success] = "Item Updated"
+    rescue Exception => e
+      flash[:error] = "There was an error deleting your item.";
+    end
+    redirect "/dashboard"
+  end
+
 end

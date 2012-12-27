@@ -1,4 +1,4 @@
-<form class="stacked" method="POST" action="/items/new">
+<form class="stacked" method="POST" action="<%= (@item) ? "/items/edit/#{@item._id}" : "/items/new" %>">
 
   <div class="fields">
     <div class="field twenty">
@@ -20,7 +20,7 @@
   <div class="field">
     <label for"">Description</label>
     <div class="input">
-      <textarea name="description" value="<%= (@item) ? @item.description : "" %>"></textarea>
+      <textarea name="description"><%= (@item) ? @item.description : "" %></textarea>
       <small>Any other details about this item</small>
     </div>
   </div>
