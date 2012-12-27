@@ -49,7 +49,7 @@
       <tbody>
         <% @sold_this_month.each do |item| %>
           <tr>
-            <td><%= item.name %></td>
+            <td><a href="/items/edit/<%= item._id %>"><%= item.name %></a></td>
             <td>$<%= "%g" % item.gross_profit.round(2) %></td>
             <td>$<%= "%g" % item.fees.round(2) %></td>
             <td>$<%= "%g" % item.net_profit.round(2) %></td>
