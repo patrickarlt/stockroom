@@ -92,6 +92,9 @@ class Application < Sinatra::Base
     profit_per_day_so_far = (net_sales.zero?) ? 0 : Date.today.day / net_sales
     @estimated_profit = (profit_per_day_so_far * days_left_this_month) + net_sales - @store.rent
     
+    # Estimated Check
+    @estimated_check = @store.estimated_check_this_month
+
     erb :index
   end
 
@@ -134,6 +137,9 @@ class Application < Sinatra::Base
     @profit_this_month = net_sales.round(2) - @store.rent
     @items_sold = @store.num_sales_this_month
     @gross_sales = gross_sales
+
+    @estimated_check = @store.estimated_check_for_month(params[:year].to_i, params[:month].to_i)
+
     erb :"history/view"
   end
 

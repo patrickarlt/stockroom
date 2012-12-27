@@ -1,23 +1,31 @@
 <div class="row clear">
-  <div class="eight column">
+  <div class="six column">
     <div class="dashboard-item">
-      <h6>Total Profit</h6>
+      <h6>Estimated Check</h6>
+      <h2 class="<%= class_for_number @estimated_check %>"><%= "%g" % @estimated_check %></h2>
+      <small>Estimated check for this month</small>
+    </div>
+  </div>
+
+  <div class="six column">
+    <div class="dashboard-item">
+      <h6>Monthly Profit</h6>
       <h2 class="<%= class_for_number @profit_this_month %>"><%= "%g" % @profit_this_month %></h2>
       <small>Profit on every sale minus rent</small>
     </div>
   </div>
 
-  <div class="eight column">
+  <div class="six column">
     <div class="dashboard-item">
-      <h6>Gross Sales</h6>
+      <h6>Monthly Gross</h6>
       <h2 class="<%= class_for_number @gross_sales %>"><%= "%g" % @gross_sales %></h2>
       <small>Sales before fees and commission</small>
     </div>
   </div>
 
-  <div class="eight column">
+  <div class="six column">
     <div class="dashboard-item">
-      <h6>Items Sold</h6>
+      <h6>Sales This Month</h6>
       <h2 class="<%= class_for_number @items_sold %>"><%= "%g" % @items_sold %></h2>
       <small>Total number of items sold</small>
     </div>

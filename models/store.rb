@@ -48,4 +48,18 @@ class Store
     self.net_sales_for_month(year, month) - self.rent
   end
 
+  def estimated_check_this_month
+    sales_minus_fees = self.items.sold_this_month.inject(0) do |sum, sale|
+      sum + (sale.sold_for - sale.fees)
+    end
+    sales_minus_fees - self.rent
+  end
+
+  def estimated_check_for_month year, month
+    sales_minus_fees = self.items.sold_in_month(year, month).inject(0) do |sum, sale|
+      sum + (sale.sold_for - sale.fees)
+    end
+    sales_minus_fees - self.rent
+  end
+
 end

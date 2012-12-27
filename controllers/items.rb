@@ -73,7 +73,6 @@ class Items < Application
 
   post "/edit/:id" do
     require_session
-    title "Edit Item"
     item = Item.find(params[:id])
     begin
       item.update_attributes!({
