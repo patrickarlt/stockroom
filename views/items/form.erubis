@@ -82,7 +82,34 @@
     </fieldset>
   </div>
 
-  <div class="actions">  
+  <div class="column twelve left">
+    <div class="field">
+    <fieldset>
+      <legend>Sale Info</legend>
+      <div class="input">
+        <ul>
+          <li><label for=""><input type="checkbox" name="sold" value="sold" <%= checked_if(@item && @item.sold) %>> Item Sold?</label></li>
+        </ul>
+      </div>
+      <div class="field twelve">
+        <label for"">Sold For</label>
+        <div class="input ">
+          <input type="text" name="sold_for" value="<%= (@item) ? @item.sold_for : "" %>"> 
+          <small>How much will you price the item for?</small>
+        </div>
+      </div>
+      <div class="field twelve">
+        <label for"">Sold On</label>
+        <div class="input ">
+          <input type="date" name="sold_on" value="<%= (@item) ? @item.sold_on : "" %>">
+          <small>When did you put the item in your store?</small>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+
+
+  <div class="actions clear">  
     <input type="submit" value="<%= (@item) ? "Update Item" : "Create Item" %>" class="btn">
   </div>
 

@@ -21,6 +21,14 @@ class Items < Application
       category: params[:category]
     })
 
+    unless params[:sold].nil?
+      item.update_attributes({
+        sold: true,
+        sold_on: params[:sold_on],
+        sold_for: params[:sold_for]
+      })
+    end
+
     if item.valid?
       item.save()
     else 
@@ -86,6 +94,15 @@ class Items < Application
         in_store: params[:in_store],
         category: params[:category]
       })
+
+      unless params[:sold].nil?
+        item.update_attributes({
+          sold: true,
+          sold_on: params[:sold_on],
+          sold_for: params[:sold_for]
+        })
+      end
+      
       flash[:success] = "Item Updated"
     rescue Exception => e
       flash[:error] = "There was an error deleting your item.";
