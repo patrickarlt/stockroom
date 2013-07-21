@@ -22,7 +22,7 @@ Dir.glob(%w{lib/** helpers models}.map! {|d| File.join d, '*.rb'}).each {|f| req
 # Start setting up our application by extending Sinatra::Base
 class Application < Sinatra::Base
 
-  # Load Configuration Variables  
+  # Load Configuration Variables
   def self.Config
     @@config ||= Hashie::Mash.new YAML.load_file('./config/config.yaml')[ENV['RACK_ENV'].to_s]
   end
@@ -34,7 +34,7 @@ class Application < Sinatra::Base
   def self.develpoment?
     ENV['RACK_ENV'] == 'development'
   end
-  
+
   register Sinatra::Flash
   helpers  Sinatra::UserAgentHelpers
 
@@ -72,16 +72,16 @@ class Application < Sinatra::Base
   Mongoid.logger = Logger.new($stdout, :info) if ENV['RACK_ENV'] == "development"
 
   # Initialize Redis and Resque
-  REDIS = Redis.new_from_yaml(File.join(settings.root,"config","redis.yaml"));
-  Resque.redis = REDIS
-  
+  # REDIS = Redis.new_from_yaml(File.join(settings.root,"config","redis.yaml"));
+  # Resque.redis = REDIS
+
   # Setup Sprockets
   set :sprockets,     Sprockets::Environment.new(root)
   set :precompile,    [ /\w+\.(?!js|css).+/, /application.(css|js)$/ ]
   set :assets_prefix, "/assets"
   set :digest_assets, false
   set(:assets_path)   { File.join public_folder, assets_prefix }
-  
+
   configure do
     # Setup Sprockets
     sprockets.append_path File.join(root, "assets", "css")
@@ -113,6 +113,6 @@ end
 
 # Require Controllers
 require_relative './controller.rb'
-Dir.glob(['controllers'].map! {|d| File.join d, '*.rb'}).each do |f| 
+Dir.glob(['controllers'].map! {|d| File.join d, '*.rb'}).each do |f|
   require_relative f
 end
