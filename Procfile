@@ -1,1 +1,1 @@
-web:        bundle exec rackup -p $PORT -E $ENVIRONMENT
+web:        bundle exec puma -p $PORT -e $ENVIRONMENT
