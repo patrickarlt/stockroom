@@ -51,8 +51,9 @@
           <td class="item-description">
             <h3><%= item.name %></h3>
             <p><%= item.description %></p>
+            <small><%= item.item_id %></small>
           </td>
-            
+
           <td class="item-profit">$<%= "%g" % item.net_profit.round(2) %></td>
           <td class="item-markup"><%= "%g" % item.markup %>x</td>
 
@@ -76,7 +77,7 @@
                   <input name="sold_on" type="date" value="<%= Time.now.strftime("%Y-%m-%d") %>">
                 </div>
               </div>
-                
+
               <div class="column eight">
                 <input type="submit" value="Sold" class="btn light fill ss-plus">
               </div>
